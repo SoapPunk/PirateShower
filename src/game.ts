@@ -23,4 +23,8 @@ const state: GameState = {
 
 const dcl_state = new DCL_State()
 
-dcl_state.buildFromState(state)
+//dcl_state.buildFromState(state)
+
+import { underConstruction } from "under_construction"
+
+new underConstruction()
