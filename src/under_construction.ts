@@ -16,12 +16,12 @@ export class PhysicsBox {
     body: CANNON.Body
     timer: number
 
-    constructor() {
+    constructor(position: CANNON.Vec3) {
         this.loaded = false
         this.body = new CANNON.Body({
             mass: 1,
-            shape: new CANNON.Box(new CANNON.Vec3(2, 2, 2)),
-            position: new CANNON.Vec3(32-2+(Math.random()*4), 40, 32-2+(Math.random()*4)),
+            shape: new CANNON.Box(new CANNON.Vec3(1, 1, 1)),
+            position: position,
         })
         this.body.material = boxPhysicsMaterial
         this.timer = 0
@@ -51,7 +51,7 @@ export class underConstruction {
 const physicsGroup = engine.getComponentGroup(PhysicsBox)
 const underConstructionShape = new GLTFShape("models/UnderConstruction.gltf")
 
-class UpdateSystem implements ISystem {
+export class UpdateSystem implements ISystem {
     world: CANNON.World = new CANNON.World();
     constructor() {
         this.world.gravity.set(0, -9.82, 0); // m/s²
@@ -109,7 +109,7 @@ class UpdateSystem implements ISystem {
             }
         }
 
-        if (this.timer > 3) {
+        /*if (this.timer > 3) {
             this.timer = 0
             const newBox = new Entity()
             newBox.addComponent(new PhysicsBox())
@@ -118,7 +118,7 @@ class UpdateSystem implements ISystem {
                 scale: new Vector3(2, 2, 2)
             }))
             engine.addEntity(newBox)
-        }
+        }*/
         this.timer += dt
     }
 }
